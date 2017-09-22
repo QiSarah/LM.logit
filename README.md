@@ -18,11 +18,11 @@ devtools::install_github("QiSarah/LM.logit")
 ## Fitting
 
 The main function to call in the package is `drml` function, which can
-be used to estimate the parameters of fitted recombined likelihood function of data-model parameters in logistic regression on the dataset either in the memory or on the HDFS.
+be used to estimate the parameters of fitted recombined likelihood function of data-model parameters in the logistic regression on the dataset either in the memory or on the HDFS.
 
 ## Prediction 
 
-The function for prediction is `predNew.local` function, which is used to provide the 0.025, 0.5, 0.975 quantiles of the distribution of fitted predict probability using the fitted density of model parameters. The prediction for new dataset
+The function for prediction is a`predNew.local` function, which is used to provide the 0.025, 0.5, 0.975 quantiles of the distribution of fitted predict probability using the fitted density of model parameters. The prediction for new dataset
 will be conducted in local memory.
 
 The function for prediction is `predNew.dr` function, which is similar to `predNew.local`. The prediction for new dataset
