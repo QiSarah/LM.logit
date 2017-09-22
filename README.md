@@ -2,9 +2,9 @@
 
 [![Build Status](https://github.com/QiSarah/LM.logit.git)](https://github.com/QiSarah/LM.logit.git)
 
-In Divide & Recombine (D&R), big data are divided into subsets, each analytic method is applied to subsets, and the outputs are recombined. The package is the implementation of an innovate D&R procedure to compute likelihood functions of data-model parameters for big data. The likelihood-model is a parametric probability density function of the data-model parameters. The density parameters are estimated by fitting the density to MCMC draws from each subset data-model likelihood function, and then the fitted densities are recombined.
+In Divide & Recombine (D&R), big data are divided into subsets, each analytic method is applied to subsets, and the outputs are recombined. The package is the implementation of an innovative D&R procedure to compute likelihood functions of data-model parameters for big data. The likelihood-model is a parametric probability density function of the data-model parameters. The density parameters are estimated by fitting the density to MCMC draws from each subset data-model likelihood function, and then the fitted densities are recombined.
 
-In summary, this is an R package that provide a way to fit logist regression to big data based 
+In summary, this is an R package that provides a way to fit logistic regression to big data based 
 on likelihood modeling routine under the divide and recombined framework.
 
 
@@ -18,12 +18,12 @@ devtools::install_github("QiSarah/LM.logit")
 ## Fitting
 
 The main function to call in the package is `drml` function, which can
-be used to estimate the parameters of fitted recombined likelihood function of data-model parameters in logisic regression on the dataset either in the memory or on the HDFS.
+be used to estimate the parameters of fitted recombined likelihood function of data-model parameters in logistic regression on the dataset either in the memory or on the HDFS.
 
 ## Prediction 
 
 The function for prediction is `predNew.local` function, which is used to provide the 0.025, 0.5, 0.975 quantiles of the distribution of fitted predict probability using the fitted density of model parameters. The prediction for new dataset
-will be conducted in local memory 
+will be conducted in local memory.
 
 The function for prediction is `predNew.dr` function, which is similar to `predNew.local`. The prediction for new dataset
 will be conducted on HDFS using MapReduce or on local disk.
@@ -34,8 +34,7 @@ For each subset, the density parameters are estimated by fitting the density to 
 
 ## Acknowledgment
 
-LM.logit development is depended on 
-
+LM.logit development depends on: 
 - datadr package by Ryan Hafen
 - Rhipe package by Saptarshi Guha
 - sn package by Adelchi Azzalini
