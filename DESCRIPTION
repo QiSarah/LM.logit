@@ -1,0 +1,11 @@
+Package: LM.logit
+Type: Package
+Title: Likelihood Modeling for Logistic Regression
+Version: 1.0
+Date: 2017-09-21
+Author: Qi Liu
+Maintainer: Qi Liu <liuqi.jlu@gmail.com>
+Description: In divide and recombine framework, big data are divided into subsets, each analytic method is applied to subsets, and the outputs are recombined. The likelihood-model for logistic regression is a parametric probability density function of the parameters in the logistic regression. The density parameters are estimated by fitting the density to MCMC draws from each subset data-model likelihood function, and then the fitted densities are recombined.
+Imports: datadr, sn, BayesLogit, MASS, mvtnorm, moments
+License: MIT + file LICENSE
+RoxygenNote: 6.0.1
