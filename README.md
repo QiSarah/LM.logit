@@ -1,10 +1,11 @@
 # LM.logit: Model Likelihood of Logistic Regression in Divide and Recombine
 
-[![Build Status](https://travis-ci.org/XiaosuTong/drsstl.svg?branch=master)](https://travis-ci.org/XiaosuTong/drsstl)
+[![Build Status](https://github.com/QiSarah/LM.logit.git)](https://github.com/QiSarah/LM.logit.git)
 
-This is an R package that provide a way to analyze spatial-temporal data based 
-on SSTL (Spatial Seasonal Trend decomposition using Loess) routine under the 
-divide and recombined framework.
+In Divide & Recombine (D&R), big data are divided into subsets, each analytic method is applied to subsets, and the outputs are recombined. The package is the implementation of an innovate D&R procedure to compute likelihood functions of data-model parameters for big data. The likelihood-model is a parametric probability density function of the data-model parameters. The density parameters are estimated by fitting the density to MCMC draws from each subset data-model likelihood function, and then the fitted densities are recombined.
+
+In summary, this is an R package that provide a way to fit logist regression to big data based 
+on likelihood modeling routine under the divide and recombined framework.
 
 
 ## Installation
@@ -16,36 +17,29 @@ devtools::install_github("QiSarah/LM.logit")
 
 ## Fitting
 
-The main function to call in the package is `drsstl` function, which is a
-wrapper function of `sstl_mr` and `sstl_local` two functions. `drsstl` can
-be used to carry out SSTL routine on the dataset either in the memory or
-on the HDFS.
+The main function to call in the package is `drml` function, which can
+be used to estimate the parameters of fitted recombined likelihood function of data-model parameters in logisic regression on the dataset either in the memory or on the HDFS.
 
 ## Prediction 
 
-The function for prediction is `predNewLocs` function, which is a wrapper
-function of `predNew_mr` and `predNew_local` two functions. Depends on where
-the original fitting results are saved, the prediction at new locations 
-will be conducted either in local memory or on HDFS using MapReduce.
+The function for prediction is `predNew.local` function, which is used to provide the 0.025, 0.5, 0.975 quantiles of the distribution of fitted predict probability using the fitted density of model parameters. The prediction for new dataset
+will be conducted in local memory 
 
-## Data
+The function for prediction is `predNew.dr` function, which is similar to `predNew.local`. The prediction for new dataset
+will be conducted on HDFS using MapReduce or on local disk.
 
-In the data subdirectory, `tmax.RData` inlcudes a data.frame named `tmax_all`
-which can be used as example to illustrate the usage of `drsstl` in local memory.
-`station_info.RData` contains a data.frame which includes all stations information.
-It is usefual for both local and mapreduce situation of `drsstl`. User has to 
-copy the `station_info.RData` to HDFS if the mapreduce is chosen.
+## Subset Approximation
 
-In inst subdirectory, tmax.txt is the raw data file contains the maximum
-temperature data. User can copy it to HDFS and conduct `drsstl` under divide
-and recombined framework. 
+For each subset, the density parameters are estimated by fitting the density to MCMC draws from logistic regression likelihood function. Two likelihood-models have been considered, skew-normal and normal. The function `LMsubset` which is a wrapper of `subset_approx` is used to estimate parameters in one of two likelihood-model (skew-normal or normal) and also provide a list of credible intervals to check the performance of likelihood modeling.
 
 ## Acknowledgment
 
-drsstl development is depended on 
+LM.logit development is depended on 
 
-- stlplus package by Ryan Hafen
 - datadr package by Ryan Hafen
 - Rhipe package by Saptarshi Guha
-- Spaloess package by Xiaosu Tong
-- loess function in base R by R core Team
+- sn package by Adelchi Azzalini
+- BayesLogit package by Nicholas G. Polson, James G. Scott, and Jesse Windle
+- MASS package by Brian Ripley, Bill Venables, Douglas M. Bates, Kurt Hornik, Albrecht Gebhardt, David Firth
+- moments package by Lukasz Komsta
+- mvrnorm function from mvtnorm package in base R by R core Team
